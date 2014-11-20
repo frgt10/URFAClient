@@ -8,7 +8,7 @@
  */
 abstract class URFAClient {
 
-    const VERSION = '1.0.5';
+    const VERSION = '1.0.6';
 
     /**
      * Автозагрузка класса
@@ -43,12 +43,13 @@ abstract class URFAClient {
     public static function init(Array $data)
     {
         $data = array_merge(array(
-            'login'    => '',
-            'password' => '',
-            'address'  => '',
+            'login'    => 'init',
+            'password' => 'init',
+            'address'  => 'localhost',
             'port'     => 11758,
+            'timeout'  => 30,
             'admin'    => TRUE,
-            'api'      => dirname(__FILE__) . '/../api.xml',
+            'api'      => __DIR__ . '/../api.xml',
             'log'      => FALSE,
         ), $data);
 
