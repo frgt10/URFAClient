@@ -37,11 +37,15 @@ final class URFAClient_Connection {
             stream_context_set_option($context, 'ssl', 'capture_peer_cert', TRUE);
             stream_context_set_option($context, 'ssl', 'local_cert', __DIR__ . '/../../admin.crt');
             stream_context_set_option($context, 'ssl', 'passphrase', 'netup');
+            stream_context_set_option($context, 'ssl', 'ciphers', 'SSLv3');
         }
         else
         {
             stream_context_set_option($context, 'ssl', 'ciphers', 'ADH-RC4-MD5');
         }
+
+        stream_context_set_option($context, 'ssl', 'verify_peer', FALSE);
+        stream_context_set_option($context, 'ssl', 'verify_peer_name', FALSE);
 
         $data['address'] = gethostbyname($data['address']);
 
@@ -231,5 +235,4 @@ final class URFAClient_Connection {
             fclose($this->_socket);
         }
     }
-
 }
